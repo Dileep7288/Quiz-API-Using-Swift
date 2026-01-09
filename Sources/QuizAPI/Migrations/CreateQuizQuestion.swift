@@ -11,7 +11,7 @@ struct CreateQuizQuestion: Migration {
 
     func prepare(on database: any Database) -> EventLoopFuture<Void> {
         database.schema("quiz_questions")
-            .id()
+            .field("id", .int, .identifier(auto: true))
             .field("question", .string, .required)
             .field("optionA", .string, .required)
             .field("optionB", .string, .required)

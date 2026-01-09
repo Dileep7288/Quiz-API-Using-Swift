@@ -12,8 +12,8 @@ final class QuizQuestion: Model, Content, @unchecked Sendable {
 
     static let schema = "quiz_questions"
 
-    @ID(key: .id)
-    var id: UUID?
+    @ID(custom: "id", generatedBy: .database)
+    var id: Int?
 
     @Field(key: "question")
     var question: String
