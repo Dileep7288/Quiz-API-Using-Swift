@@ -8,4 +8,3 @@ struct QuizQuestionResponse: Content {
     let optionC: String
     let optionD: String
 }
-
