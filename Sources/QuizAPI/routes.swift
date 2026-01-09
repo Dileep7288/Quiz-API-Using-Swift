@@ -13,7 +13,18 @@ func routes(_ app: Application) throws {
         return question
     }
 
-    app.get("quiz", "questions") { req async throws -> [QuizQuestion] in
-        try await QuizQuestion.query(on: req.db).all()
+    app.get("quiz", "questions") { req async throws -> [QuizQuestionResponse] in
+        let questions = try await QuizQuestion.query(on: req.db).all()
+
+        return questions.map {
+            QuizQuestionResponse(
+                id: $0.id!,
+                question: $0.question,
+                optionA: $0.optionA,
+                optionB: $0.optionB,
+                optionC: $0.optionC,
+                optionD: $0.optionD
+            )
+        }
     }
 }
