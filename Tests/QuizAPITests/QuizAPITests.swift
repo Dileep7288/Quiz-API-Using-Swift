@@ -23,6 +23,7 @@ struct QuizAPITests {
     @Test("Getting all the Quiz Questions")
     func getAllQuizQuestions() async throws {
         try await withApp { app in
+            try await QuizQuestion.query(on: app.db).delete()
             let sampleQuestions = [
                 QuizQuestion(question: "What is the capital of France?", optionA: "Berlin", optionB: "Paris", optionC: "London", optionD: "Madrid", correctAnswer: "Paris"),
                 QuizQuestion(question: "What is 2 + 2?", optionA: "3", optionB: "4", optionC: "5", optionD: "6", correctAnswer: "4")
